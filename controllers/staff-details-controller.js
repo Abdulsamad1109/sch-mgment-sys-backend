@@ -38,9 +38,10 @@ router.post("/staffLogin", async (req,res)=>{
                 let {password, ...rest} = findStaff
                 let jwtToken2 = jwt.sign({...rest, role:2}, jwtSecret, {expiresIn: "1d"})
                 if (jwtToken2) {
-                    return res.send(jwtToken2)
+                    res.send({jwtToken2, firstName: findStaff.firstName, lastName: findStaff.lastName})
+                }else{
+
                 }
-                // console.log(jwtToken2);
                 
             }else {
                 res.send("incorrect password");
